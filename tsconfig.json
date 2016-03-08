@@ -2,23 +2,24 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
+    "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noEmitHelpers": false,
     "sourceMap": true
   },
-  "exclude": [
-    "node_modules",
+  "files": [
     "typings/main.d.ts",
-    "typings/main"
+    "typings/custom/normalizr.d.ts",
+    "src/main.ts",
+    "node_modules/immutable/dist/immutable.d.ts"
   ],
   "filesGlob": [
     "./src/**/*.ts",
     "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom_typings.d.ts",
-    "typings/browser.d.ts"
+    "!./node_modules/**/*.ts"
   ],
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": { "rewriteTsconfig": true }
 }

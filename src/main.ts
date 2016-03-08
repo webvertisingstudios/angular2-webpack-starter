@@ -6,6 +6,18 @@ import * as browser from 'angular2/platform/browser';
 import {ROUTER_PROVIDERS, LocationStrategy, HashLocationStrategy} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 
+/**
+ * vendors
+ */
+import 'rxjs';
+import '@ngrx/store';
+import 'normalizr';
+import 'immutable';
+
+import {provideStore} from '@ngrx/store';
+import {users} from './app/users/reducers/users';
+
+
 /*
  * App Environment Providers
  * providers that only live in certain environment
@@ -34,7 +46,8 @@ export function main() {
     ...ENV_PROVIDERS,
     ...HTTP_PROVIDERS,
     ...ROUTER_PROVIDERS,
-    ngCore.provide(LocationStrategy, { useClass: HashLocationStrategy })
+    ngCore.provide(LocationStrategy, { useClass: HashLocationStrategy }),
+    provideStore({users})
   ])
   .catch(err => console.error(err));
 }
@@ -65,7 +78,7 @@ if ('development' === process.env.ENV) {
     } else {
       bootstrapDomReady();
     }
-    module.hot.accept();
+    //module.hot.accept();
   } else {
     bootstrapDomReady();
   }
